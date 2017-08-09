@@ -16,6 +16,7 @@ class ViewController: UIViewController {
     @IBOutlet weak var tipControl: UISegmentedControl!
 
     var tipPercentages = [18, 20, 25]
+    var defaultIndex = 0
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -34,14 +35,16 @@ class ViewController: UIViewController {
             tipPercentages[2] = defaults.integer(forKey: "otherTipPercentage2")
             
             tipPercentages.sort()
-            print(defaultTipPercentage)
             
             if (defaultTipPercentage == tipPercentages[1]) {
                 tipControl.selectedSegmentIndex = 1
+                defaultIndex = 1
             } else if (defaultTipPercentage == tipPercentages[2]) {
                 tipControl.selectedSegmentIndex = 2
+                defaultIndex = 2
             } else {
                 tipControl.selectedSegmentIndex = 0
+                defaultIndex = 0
             }
             
             for i in 0..<tipControl.numberOfSegments {
@@ -49,11 +52,20 @@ class ViewController: UIViewController {
             }
         }
         
+        // Calculate bill based on default.
+        let bill = Double(billField.text!) ?? 0
+        let tip = bill * Double(tipPercentages[tipControl.selectedSegmentIndex]) / 100
+        let total = bill + tip
+        
+        tipLabel.text = String(format: "$%.2f", tip)
+        totalLabel.text = String(format: "$%.2f", total)
+        
         print("view will appear")
     }
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
+        
         print("view did appear")
     }
     
@@ -62,12 +74,11 @@ class ViewController: UIViewController {
         
         let defaults = UserDefaults.standard
         
-        let selectedSegmentIndex = tipControl.selectedSegmentIndex
-        if (selectedSegmentIndex == 0) {
-            defaults.set(tipPercentages[selectedSegmentIndex], forKey: "defaultTipPercentage")
+        if (defaultIndex == 0) {
+            defaults.set(tipPercentages[0], forKey: "defaultTipPercentage")
             defaults.set(tipPercentages[1], forKey: "otherTipPercentage1")
             defaults.set(tipPercentages[2], forKey: "otherTipPercentage2")
-        } else if (selectedSegmentIndex == 1) {
+        } else if (defaultIndex == 1) {
             defaults.set(tipPercentages[0], forKey: "otherTipPercentage1")
             defaults.set(tipPercentages[1], forKey: "defaultTipPercentage")
             defaults.set(tipPercentages[2], forKey: "otherTipPercentage2")
