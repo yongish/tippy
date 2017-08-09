@@ -9,11 +9,37 @@
 import UIKit
 
 class SettingsViewController: UIViewController {
-
+    @IBOutlet weak var defaultTipPercentage: UITextField!
+    @IBOutlet weak var otherTipPercentage1: UITextField!
+    @IBOutlet weak var otherTipPercentage2: UITextField!
+    
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
         // Do any additional setup after loading the view.
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        
+        let defaults = UserDefaults.standard
+
+        
+        defaultTipPercentage.text = String(defaults.integer(forKey: "defaultTipPercentage"))
+        otherTipPercentage1.text = String(defaults.integer(forKey: "otherTipPercentage1"))
+        otherTipPercentage2.text = String(defaults.integer(forKey: "otherTipPercentage2"))
+    }
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        
+        // Save tip percentages to load in TipViewController.
+        let defaults = UserDefaults.standard
+        defaults.set(Int(defaultTipPercentage.text!), forKey: "defaultTipPercentage")
+        defaults.set(Int(otherTipPercentage1.text!), forKey: "otherTipPercentage1")
+        defaults.set(Int(otherTipPercentage2.text!), forKey: "otherTipPercentage2")
+        defaults.synchronize()
     }
 
     override func didReceiveMemoryWarning() {

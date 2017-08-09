@@ -14,7 +14,9 @@ class ViewController: UIViewController {
     @IBOutlet weak var tipLabel: UILabel!
     @IBOutlet weak var totalLabel: UILabel!
     @IBOutlet weak var tipControl: UISegmentedControl!
-    
+
+    var tipPercentages = [18, 20, 25]
+
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
@@ -22,6 +24,31 @@ class ViewController: UIViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
+        
+        // Load tip percentages set in SettingsViewController.
+        let defaults = UserDefaults.standard
+        if (defaults.integer(forKey: "defaultTipPercentage") != 0) {
+            tipPercentages[0] = defaults.integer(forKey: "defaultTipPercentage")
+            let defaultTipPercentage = tipPercentages[0]
+            tipPercentages[1] = defaults.integer(forKey: "otherTipPercentage1")
+            tipPercentages[2] = defaults.integer(forKey: "otherTipPercentage2")
+            
+            tipPercentages.sort()
+            print(defaultTipPercentage)
+            
+            if (defaultTipPercentage == tipPercentages[1]) {
+                tipControl.selectedSegmentIndex = 1
+            } else if (defaultTipPercentage == tipPercentages[2]) {
+                tipControl.selectedSegmentIndex = 2
+            } else {
+                tipControl.selectedSegmentIndex = 0
+            }
+            
+            for i in 0..<tipControl.numberOfSegments {
+                tipControl.setTitle(String(tipPercentages[i]), forSegmentAt: i)
+            }
+        }
+        
         print("view will appear")
     }
     
@@ -32,11 +59,33 @@ class ViewController: UIViewController {
     
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
+        
+        let defaults = UserDefaults.standard
+        
+        let selectedSegmentIndex = tipControl.selectedSegmentIndex
+        if (selectedSegmentIndex == 0) {
+            defaults.set(tipPercentages[selectedSegmentIndex], forKey: "defaultTipPercentage")
+            defaults.set(tipPercentages[1], forKey: "otherTipPercentage1")
+            defaults.set(tipPercentages[2], forKey: "otherTipPercentage2")
+        } else if (selectedSegmentIndex == 1) {
+            defaults.set(tipPercentages[0], forKey: "otherTipPercentage1")
+            defaults.set(tipPercentages[1], forKey: "defaultTipPercentage")
+            defaults.set(tipPercentages[2], forKey: "otherTipPercentage2")
+        } else {
+            defaults.set(tipPercentages[0], forKey: "otherTipPercentage1")
+            defaults.set(tipPercentages[1], forKey: "otherTipPercentage2")
+            defaults.set(tipPercentages[2], forKey: "defaultTipPercentage")
+        }
+        
+        
+        defaults.synchronize()
+        
         print("view will disappear")
     }
     
     override func viewDidDisappear(_ animated: Bool) {
         super.viewDidDisappear(animated)
+        
         print("view did disappear")
     }
     
@@ -51,10 +100,8 @@ class ViewController: UIViewController {
 
     @IBAction func calculateTip(_ sender: AnyObject) {
         
-        let tipPercentages = [0.18, 0.2, 0.25]
-        
         let bill = Double(billField.text!) ?? 0
-        let tip = bill * tipPercentages[tipControl.selectedSegmentIndex]
+        let tip = bill * Double(tipPercentages[tipControl.selectedSegmentIndex]) / 100
         let total = bill + tip
         
         tipLabel.text = String(format: "$%.2f", tip)
