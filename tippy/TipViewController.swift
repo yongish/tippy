@@ -21,11 +21,30 @@ class ViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
+        
+        NotificationCenter.default.addObserver(self, selector: #selector(ViewController.clearBillField), name: NSNotification.Name.UIApplicationWillEnterForeground, object: nil)
+    }
+    
+    // Clear UserDefaults bill if it has been more than 5 seconds (demo purpose; supposed to be 10 min).
+    func clearBillField() {
+        let LIMIT = 5
+        let defaults = UserDefaults.standard
+        let savedTime = defaults.object(forKey: "exitTime")
+        let savedBill = defaults.string(forKey: "savedBill")
+        if (savedTime != nil) {
+            let intervalSeconds = Int(NSDate().timeIntervalSince(savedTime as! Date))
+            print("INTERVAL SECS", intervalSeconds)
+            if (intervalSeconds > LIMIT) {
+                billField.text = ""
+            } else if (savedBill != nil) {
+                billField.text = savedBill
+            }
+        }
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        
+
         // Load tip percentages set in SettingsViewController.
         let defaults = UserDefaults.standard
         if (defaults.integer(forKey: "defaultTipPercentage") != 0) {
@@ -88,7 +107,6 @@ class ViewController: UIViewController {
             defaults.set(tipPercentages[2], forKey: "defaultTipPercentage")
         }
         
-        
         defaults.synchronize()
         
         print("view will disappear")
@@ -106,6 +124,14 @@ class ViewController: UIViewController {
     }
 
     @IBAction func onTap(_ sender: AnyObject) {
+        
+        // Save the bill in case user exits app.
+        let defaults = UserDefaults.standard
+        defaults.set(billField.text, forKey: "billField")
+        defaults.synchronize()
+        
+        print("entered bill")
+        
         view.endEditing(true)
     }
 
