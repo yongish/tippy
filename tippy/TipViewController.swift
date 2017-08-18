@@ -23,6 +23,8 @@ class ViewController: UIViewController {
         // Do any additional setup after loading the view, typically from a nib.
         
         NotificationCenter.default.addObserver(self, selector: #selector(ViewController.clearBillField), name: NSNotification.Name.UIApplicationWillEnterForeground, object: nil)
+        
+        self.billField.becomeFirstResponder()
     }
     
     // Clear UserDefaults bill if it has been more than 5 seconds (demo purpose; supposed to be 10 min).
