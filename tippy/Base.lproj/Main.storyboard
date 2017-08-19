@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="12121" systemVersion="16F73" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" colorMatched="YES" initialViewController="JQq-gE-amU">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="12121" systemVersion="16G29" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" colorMatched="YES" initialViewController="JQq-gE-amU">
     <device id="retina4_0" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
@@ -96,9 +96,12 @@
                     </navigationItem>
                     <connections>
                         <outlet property="billField" destination="JAe-RL-3jA" id="PzJ-Kz-pgI"/>
+                        <outlet property="billLabel" destination="X2Q-Wr-eHR" id="LRr-Vm-2b4"/>
                         <outlet property="tipControl" destination="koP-p4-fRw" id="kBS-mn-E1A"/>
                         <outlet property="tipLabel" destination="dyw-FF-ZtN" id="okn-6O-8Iz"/>
+                        <outlet property="tipLabelLabel" destination="IOv-8R-L9Q" id="5wK-mR-Sog"/>
                         <outlet property="totalLabel" destination="t7l-ni-ShV" id="RDF-hQ-Fxy"/>
+                        <outlet property="totalLabelLabel" destination="oxw-8i-MJ6" id="SUo-fZ-d0o"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
@@ -118,63 +121,87 @@
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Tip percentages on calculator" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="ui0-az-xY9">
-                                <rect key="frame" x="16" y="81" width="228" height="21"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Tip percentages" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="ui0-az-xY9">
+                                <rect key="frame" x="15" y="81" width="228" height="30"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <fontDescription key="fontDescription" style="UICTFontTextStyleTitle1"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="right" minimumFontSize="17" id="tNk-rh-52M">
-                                <rect key="frame" x="208" y="110" width="97" height="30"/>
+                                <rect key="frame" x="207" y="119" width="97" height="30"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <nil key="textColor"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits" keyboardType="numberPad"/>
                             </textField>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Default" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="Zc1-9C-xny">
-                                <rect key="frame" x="16" y="115" width="55" height="21"/>
+                                <rect key="frame" x="16" y="124" width="55" height="21"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="right" minimumFontSize="17" id="cuP-Vd-8UZ">
-                                <rect key="frame" x="208" y="148" width="97" height="30"/>
+                                <rect key="frame" x="207" y="157" width="97" height="30"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <nil key="textColor"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits" keyboardType="numberPad"/>
                             </textField>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Other" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="BaS-O5-s8G">
-                                <rect key="frame" x="16" y="153" width="44" height="21"/>
+                                <rect key="frame" x="16" y="162" width="44" height="21"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Other" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="iZ9-ui-2dF">
-                                <rect key="frame" x="16" y="191" width="44" height="21"/>
+                                <rect key="frame" x="16" y="200" width="44" height="21"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="right" minimumFontSize="17" id="SxF-CB-zSQ">
-                                <rect key="frame" x="208" y="186" width="97" height="30"/>
+                                <rect key="frame" x="207" y="195" width="97" height="30"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <nil key="textColor"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits" keyboardType="numberPad"/>
                             </textField>
+                            <segmentedControl opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" id="vQ3-tL-55z">
+                                <rect key="frame" x="16" y="300" width="288" height="29"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <segments>
+                                    <segment title="Light"/>
+                                    <segment title="Dark"/>
+                                </segments>
+                                <connections>
+                                    <action selector="setTheme:" destination="I6T-fn-n5O" eventType="valueChanged" id="PxV-EP-tOz"/>
+                                </connections>
+                            </segmentedControl>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Theme" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="T5s-Qb-IOw">
+                                <rect key="frame" x="16" y="247" width="95" height="39"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" style="UICTFontTextStyleTitle1"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
                     <navigationItem key="navigationItem" id="cXc-Ui-jAx"/>
                     <connections>
+                        <outlet property="defaultLabel" destination="Zc1-9C-xny" id="1qu-cn-YrX"/>
                         <outlet property="defaultTipPercentage" destination="tNk-rh-52M" id="WMK-wh-RB5"/>
+                        <outlet property="other0Label" destination="BaS-O5-s8G" id="YTN-Uw-4Y1"/>
+                        <outlet property="other1Label" destination="iZ9-ui-2dF" id="9J3-7I-hvc"/>
                         <outlet property="otherTipPercentage1" destination="cuP-Vd-8UZ" id="Ohi-Zy-OmH"/>
                         <outlet property="otherTipPercentage2" destination="SxF-CB-zSQ" id="0UH-eJ-qGL"/>
+                        <outlet property="themeLabel" destination="T5s-Qb-IOw" id="y8J-Oq-ys4"/>
+                        <outlet property="tipControl" destination="vQ3-tL-55z" id="KV3-am-W4x"/>
+                        <outlet property="tipPercentagesLabel" destination="ui0-az-xY9" id="dUU-Xy-TMO"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="gMW-z6-YYn" userLabel="First Responder" sceneMemberID="firstResponder"/>

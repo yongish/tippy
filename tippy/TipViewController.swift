@@ -15,6 +15,10 @@ class ViewController: UIViewController {
     @IBOutlet weak var totalLabel: UILabel!
     @IBOutlet weak var tipControl: UISegmentedControl!
 
+    @IBOutlet weak var billLabel: UILabel!
+    @IBOutlet weak var tipLabelLabel: UILabel!
+    @IBOutlet weak var totalLabelLabel: UILabel!
+    
     var tipPercentages = [18, 20, 25]
     var defaultIndex = 0
 
@@ -71,6 +75,24 @@ class ViewController: UIViewController {
             for i in 0..<tipControl.numberOfSegments {
                 tipControl.setTitle(String(tipPercentages[i]), forSegmentAt: i)
             }
+        }
+        
+        let theme = defaults.integer(forKey: "theme")
+        print("theme", theme)
+        if (theme == 0) {
+            view.backgroundColor = UIColor.white
+            tipLabel.textColor = UIColor.black
+            totalLabel.textColor = UIColor.black
+            billLabel.textColor = UIColor.black
+            tipLabelLabel.textColor = UIColor.black
+            totalLabelLabel.textColor = UIColor.black
+        } else {
+            view.backgroundColor = UIColor.black
+            tipLabel.textColor = UIColor.white
+            totalLabel.textColor = UIColor.white
+            billLabel.textColor = UIColor.white
+            tipLabelLabel.textColor = UIColor.white
+            totalLabelLabel.textColor = UIColor.white
         }
         
         // Calculate bill based on default.
@@ -142,7 +164,6 @@ class ViewController: UIViewController {
         let total = bill + tip
         
         let currencySymbol = Locale.current.currencySymbol!
-        
         
         totalLabel.text = String(format: "%@%.2f", locale: Locale.current, currencySymbol, total)
         tipLabel.text = String(format: "%@%.2f", locale: Locale.current, currencySymbol, tip)
