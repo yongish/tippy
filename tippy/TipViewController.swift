@@ -74,12 +74,7 @@ class ViewController: UIViewController {
         }
         
         // Calculate bill based on default.
-        let bill = Double(billField.text!) ?? 0
-        let tip = bill * Double(tipPercentages[tipControl.selectedSegmentIndex]) / 100
-        let total = bill + tip
-        
-        tipLabel.text = String(format: "$%.2f", tip)
-        totalLabel.text = String(format: "$%.2f", total)
+        fillLabels()
         
         print("view will appear")
     }
@@ -138,13 +133,19 @@ class ViewController: UIViewController {
     }
 
     @IBAction func calculateTip(_ sender: AnyObject) {
-        
+        fillLabels()
+    }
+    
+    func fillLabels() {
         let bill = Double(billField.text!) ?? 0
         let tip = bill * Double(tipPercentages[tipControl.selectedSegmentIndex]) / 100
         let total = bill + tip
         
-        tipLabel.text = String(format: "$%.2f", tip)
-        totalLabel.text = String(format: "$%.2f", total)
+        let currencySymbol = Locale.current.currencySymbol!
+        
+        
+        totalLabel.text = String(format: "%@%.2f", locale: Locale.current, currencySymbol, total)
+        tipLabel.text = String(format: "%@%.2f", locale: Locale.current, currencySymbol, tip)
     }
 }
 
