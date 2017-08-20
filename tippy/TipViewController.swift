@@ -21,6 +21,15 @@ class ViewController: UIViewController {
     
     var tipPercentages = [18, 20, 25]
     var defaultIndex = 0
+    
+    let collectionView: UICollectionView = {
+        let frame = CGRect(x: 0, y: 200, width: UIScreen.main.bounds.size.width, height: UIScreen.main.bounds.size.height - 200)
+        let col = UICollectionView(frame: frame, collectionViewLayout: UICollectionViewFlowLayout())
+        col.layer.borderColor = UIColor.red.cgColor
+        col.layer.borderWidth = 1.0
+        col.backgroundColor = UIColor.yellow
+        return col
+    }()
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -29,6 +38,9 @@ class ViewController: UIViewController {
         NotificationCenter.default.addObserver(self, selector: #selector(ViewController.clearBillField), name: NSNotification.Name.UIApplicationWillEnterForeground, object: nil)
         
         self.billField.becomeFirstResponder()
+        
+        
+        view.addSubview(collectionView)
     }
     
     // Clear UserDefaults bill if it has been more than 5 seconds (demo purpose; supposed to be 10 min).
@@ -152,9 +164,15 @@ class ViewController: UIViewController {
         print("entered bill")
         
         view.endEditing(true)
+        
+        
+        collectionView.removeFromSuperview()
     }
 
     @IBAction func calculateTip(_ sender: AnyObject) {
+                print("editing begin")
+        view.addSubview(collectionView)
+
         fillLabels()
     }
     
