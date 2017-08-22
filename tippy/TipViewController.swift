@@ -19,18 +19,15 @@ class ViewController: UIViewController {
     @IBOutlet weak var tipLabelLabel: UILabel!
     @IBOutlet weak var totalLabelLabel: UILabel!
     
+    @IBOutlet weak var subTipLabel: UILabel!
+    
+    
     var tipPercentages = [18, 20, 25]
     var defaultIndex = 0
     
-    let collectionView: UICollectionView = {
-        let frame = CGRect(x: 0, y: 200, width: UIScreen.main.bounds.size.width, height: UIScreen.main.bounds.size.height - 200)
-        let col = UICollectionView(frame: frame, collectionViewLayout: UICollectionViewFlowLayout())
-        col.layer.borderColor = UIColor.red.cgColor
-        col.layer.borderWidth = 1.0
-        col.backgroundColor = UIColor.yellow
-        return col
-    }()
+    @IBOutlet weak var subView: UIView!
 
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
@@ -39,8 +36,11 @@ class ViewController: UIViewController {
         
         self.billField.becomeFirstResponder()
         
-        
-        view.addSubview(collectionView)
+        // Hacky way. Hide the subview, slide it down, then unhide it.
+        subView.isHidden = true
+        view.addSubview(subView)
+        slideDown()
+//        subView.isHidden = false
     }
     
     // Clear UserDefaults bill if it has been more than 5 seconds (demo purpose; supposed to be 10 min).
@@ -153,6 +153,26 @@ class ViewController: UIViewController {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
+    
+    func slideUp() {
+        subView.isHidden = false
+        let top = CGAffineTransform(translationX: 0, y: 0)
+        UIView.animate(withDuration: 0.4, delay: 0.0, options: [], animations: {
+            // Add the transformation in this block
+            // self.container is your view that you want to animate
+            self.subView.transform = top
+        }, completion: nil)
+    }
+    
+    func slideDown() {
+        
+        let btm = CGAffineTransform(translationX: 0, y: 110)
+        UIView.animate(withDuration: 0.4, delay: 0.0, options: [], animations: {
+            // Add the transformation in this block
+            // self.container is your view that you want to animate
+            self.subView.transform = btm
+        }, completion: nil)
+    }
 
     @IBAction func onTap(_ sender: AnyObject) {
         
@@ -163,16 +183,15 @@ class ViewController: UIViewController {
         
         print("entered bill")
         
-        view.endEditing(true)
-        
-        
-        collectionView.removeFromSuperview()
+//        view.endEditing(true) Keyboard should always be present.
+        subView.isHidden = false
+        slideDown()
     }
 
     @IBAction func calculateTip(_ sender: AnyObject) {
-                print("editing begin")
-        view.addSubview(collectionView)
+        print("editing begin")
 
+        slideUp()
         fillLabels()
     }
     
