@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		97D159331F4C0D0200EE5885 /* white_keyhole.png in Resources */ = {isa = PBXBuildFile; fileRef = 97D159311F4C0D0200EE5885 /* white_keyhole.png */; };
+		97D159341F4C0D0200EE5885 /* 41032-200.png in Resources */ = {isa = PBXBuildFile; fileRef = 97D159321F4C0D0200EE5885 /* 41032-200.png */; };
 		97D821641F3634DF00494FD9 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 97D821631F3634DF00494FD9 /* AppDelegate.swift */; };
 		97D821661F3634DF00494FD9 /* TipViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 97D821651F3634DF00494FD9 /* TipViewController.swift */; };
 		97D821691F3634DF00494FD9 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 97D821671F3634DF00494FD9 /* Main.storyboard */; };
@@ -35,6 +37,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		97D159311F4C0D0200EE5885 /* white_keyhole.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = white_keyhole.png; sourceTree = "<group>"; };
+		97D159321F4C0D0200EE5885 /* 41032-200.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "41032-200.png"; sourceTree = "<group>"; };
 		97D821601F3634DF00494FD9 /* tippy.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = tippy.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		97D821631F3634DF00494FD9 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		97D821651F3634DF00494FD9 /* TipViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TipViewController.swift; sourceTree = "<group>"; };
@@ -79,6 +83,8 @@
 		97D821571F3634DF00494FD9 = {
 			isa = PBXGroup;
 			children = (
+				97D159311F4C0D0200EE5885 /* white_keyhole.png */,
+				97D159321F4C0D0200EE5885 /* 41032-200.png */,
 				97D821621F3634DF00494FD9 /* tippy */,
 				97D821771F3634DF00494FD9 /* tippyTests */,
 				97D821821F3634DF00494FD9 /* tippyUITests */,
@@ -236,8 +242,10 @@
 			buildActionMask = 2147483647;
 			files = (
 				97D8216E1F3634DF00494FD9 /* LaunchScreen.storyboard in Resources */,
+				97D159331F4C0D0200EE5885 /* white_keyhole.png in Resources */,
 				97D8216B1F3634DF00494FD9 /* Assets.xcassets in Resources */,
 				97D821691F3634DF00494FD9 /* Main.storyboard in Resources */,
+				97D159341F4C0D0200EE5885 /* 41032-200.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

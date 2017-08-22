@@ -15,14 +15,17 @@ class ViewController: UIViewController {
     
     @IBOutlet weak var subTipLabel: UILabel!
     @IBOutlet weak var subTotalLabel: UILabel!
+    @IBOutlet weak var divide2Label: UILabel!
+    @IBOutlet weak var divide3Label: UILabel!
+    @IBOutlet weak var divide4Label: UILabel!
     @IBOutlet weak var plusLabel: UILabel!
-    @IBOutlet weak var equalLabel: UILabel!
     
     
     var tipPercentages = [18, 20, 25]
     var defaultIndex = 0
     
     var flag = true
+    var kbflag = true
     
     @IBOutlet weak var billSubView: UIView!
     @IBOutlet weak var subView: UIView!
@@ -41,6 +44,9 @@ class ViewController: UIViewController {
         view.addSubview(subView)
         slideDown(duration: 0.0)
 //        subView.isHidden = false
+        
+        
+
     }
     
     // Clear UserDefaults bill if it has been more than 5 seconds (demo purpose; supposed to be 10 min).
@@ -98,8 +104,10 @@ class ViewController: UIViewController {
             tipControl.tintColor = UIColor.init(colorLiteralRed: 0.0, green: 122.0/255.0, blue: 1.0, alpha: 1.0)
             plusLabel.textColor = UIColor.black
             subTipLabel.textColor = UIColor.black
-            equalLabel.textColor = UIColor.black
             subTotalLabel.textColor = UIColor.black
+            divide2Label.textColor = UIColor.black
+            divide3Label.textColor = UIColor.black
+            divide4Label.textColor = UIColor.black
         } else {
             billField.textColor = UIColor.white
             billSubView.backgroundColor = UIColor.darkGray
@@ -107,8 +115,10 @@ class ViewController: UIViewController {
             tipControl.tintColor = UIColor.white
             plusLabel.textColor = UIColor.white
             subTipLabel.textColor = UIColor.white
-            equalLabel.textColor = UIColor.white
             subTotalLabel.textColor = UIColor.white
+            divide2Label.textColor = UIColor.white
+            divide3Label.textColor = UIColor.white
+            divide4Label.textColor = UIColor.white
         }
         
         // Calculate bill based on default.
@@ -181,6 +191,7 @@ class ViewController: UIViewController {
 
     @IBAction func onTap(_ sender: AnyObject) {
         
+        
         // Save the bill in case user exits app.
         let defaults = UserDefaults.standard
         defaults.set(billField.text, forKey: "billField")
@@ -189,9 +200,15 @@ class ViewController: UIViewController {
         print("entered bill")
         
         subView.isHidden = false
-        slideDown()
+        
+//        if (kbflag == true) {
+//            slideDown()
+//        }
+        kbflag = true
         
         flag = true
+
+        view.inputView?.becomeFirstResponder()
     }
 
     @IBAction func calculateTip(_ sender: AnyObject) {
@@ -204,6 +221,11 @@ class ViewController: UIViewController {
         fillLabels()
     }
     
+    @IBAction func onTapPercentage(_ sender: Any) {
+        view.endEditing(true)
+        kbflag = false
+    }
+    
     func fillLabels() {
         let bill = Double(billField.text!) ?? 0
         let tip = bill * Double(tipPercentages[tipControl.selectedSegmentIndex]) / 100
@@ -213,6 +235,7 @@ class ViewController: UIViewController {
 
         subTotalLabel.text = String(format: "%@%.2f", locale: Locale.current, currencySymbol, total)
         subTipLabel.text = String(format: "%@%.2f", locale: Locale.current, currencySymbol, tip)
+        
     }
 }
 
