@@ -11,13 +11,12 @@ import UIKit
 class ViewController: UIViewController {
 
     @IBOutlet weak var billField: UITextField!
-    @IBOutlet weak var tipLabel: UILabel!
-    @IBOutlet weak var totalLabel: UILabel!
     @IBOutlet weak var tipControl: UISegmentedControl!
-
     
     @IBOutlet weak var subTipLabel: UILabel!
     @IBOutlet weak var subTotalLabel: UILabel!
+    @IBOutlet weak var plusLabel: UILabel!
+    @IBOutlet weak var equalLabel: UILabel!
     
     
     var tipPercentages = [18, 20, 25]
@@ -86,26 +85,30 @@ class ViewController: UIViewController {
             }
             
             for i in 0..<tipControl.numberOfSegments {
-                tipControl.setTitle(String(tipPercentages[i]), forSegmentAt: i)
+                tipControl.setTitle(String(format: "%i%@", tipPercentages[i], "%") , forSegmentAt: i)
             }
         }
         
         let theme = defaults.integer(forKey: "theme")
         print("theme", theme)
         if (theme == 0) {
-            view.backgroundColor = UIColor.white
-            tipLabel.textColor = UIColor.black
-            totalLabel.textColor = UIColor.black
-//            billLabel.textColor = UIColor.black
-//            tipLabelLabel.textColor = UIColor.black
-//            totalLabelLabel.textColor = UIColor.black
+            billField.textColor = UIColor.black
+            billSubView.backgroundColor = UIColor.white
+            subView.backgroundColor = UIColor.lightGray
+            tipControl.tintColor = UIColor.init(colorLiteralRed: 0.0, green: 122.0/255.0, blue: 1.0, alpha: 1.0)
+            plusLabel.textColor = UIColor.black
+            subTipLabel.textColor = UIColor.black
+            equalLabel.textColor = UIColor.black
+            subTotalLabel.textColor = UIColor.black
         } else {
-            view.backgroundColor = UIColor.black
-            tipLabel.textColor = UIColor.white
-            totalLabel.textColor = UIColor.white
-//            billLabel.textColor = UIColor.white
-//            tipLabelLabel.textColor = UIColor.white
-//            totalLabelLabel.textColor = UIColor.white
+            billField.textColor = UIColor.white
+            billSubView.backgroundColor = UIColor.darkGray
+            subView.backgroundColor = UIColor.black
+            tipControl.tintColor = UIColor.white
+            plusLabel.textColor = UIColor.white
+            subTipLabel.textColor = UIColor.white
+            equalLabel.textColor = UIColor.white
+            subTotalLabel.textColor = UIColor.white
         }
         
         // Calculate bill based on default.
@@ -161,7 +164,7 @@ class ViewController: UIViewController {
         let top = CGAffineTransform(translationX: 0, y: 0)
         UIView.animate(withDuration: 0.4, delay: 0.0, options: [], animations: {
             self.billSubView.transform = top
-            self.tipControl.frame = CGRect(x: 10, y: 150, width: self.tipControl.frame.width, height: self.tipControl.frame.height)
+            self.tipControl.frame = CGRect(x: 8, y: 150, width: self.tipControl.frame.width, height: self.tipControl.frame.height)
             self.subView.transform = top
         }, completion: nil)
     }
@@ -172,7 +175,7 @@ class ViewController: UIViewController {
         let btm = CGAffineTransform(translationX: 0, y: 110)
         UIView.animate(withDuration: duration, delay: 0.0, options: [], animations: {
             self.subView.transform = btm
-            self.tipControl.frame = CGRect(x: 10, y: 250, width: self.tipControl.frame.width, height: self.tipControl.frame.height)
+            self.tipControl.frame = CGRect(x: 8, y: 250, width: self.tipControl.frame.width, height: self.tipControl.frame.height)
         }, completion: nil)
     }
 
@@ -207,9 +210,9 @@ class ViewController: UIViewController {
         let total = bill + tip
         
         let currencySymbol = Locale.current.currencySymbol!
-        
-        totalLabel.text = String(format: "%@%.2f", locale: Locale.current, currencySymbol, total)
-        tipLabel.text = String(format: "%@%.2f", locale: Locale.current, currencySymbol, tip)
+
+        subTotalLabel.text = String(format: "%@%.2f", locale: Locale.current, currencySymbol, total)
+        subTipLabel.text = String(format: "%@%.2f", locale: Locale.current, currencySymbol, tip)
     }
 }
 

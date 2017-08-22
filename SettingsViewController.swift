@@ -66,6 +66,7 @@ class SettingsViewController: UIViewController {
         if (tipControl.selectedSegmentIndex == 0) {
             // Light
             view.backgroundColor = UIColor.white
+            tipControl.tintColor = UIColor.init(colorLiteralRed: 0.0, green: 122.0/255.0, blue: 1.0, alpha: 1.0)
             tipPercentagesLabel.textColor = UIColor.black
             defaultLabel.textColor = UIColor.black
             other0Label.textColor = UIColor.black
@@ -74,6 +75,7 @@ class SettingsViewController: UIViewController {
         } else {
             // Dark
             view.backgroundColor = UIColor.black
+            tipControl.tintColor = UIColor.white
             tipPercentagesLabel.textColor = UIColor.white
             defaultLabel.textColor = UIColor.white
             other0Label.textColor = UIColor.white
