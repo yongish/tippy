@@ -40,7 +40,7 @@ class ViewController: UIViewController {
         // Hacky way. Hide the subview, slide it down, then unhide it.
         subView.isHidden = true
         view.addSubview(subView)
-        slideDown()
+        slideDown(duration: 0.0)
 //        subView.isHidden = false
     }
     
@@ -158,28 +158,21 @@ class ViewController: UIViewController {
     func slideUp() {
         subView.isHidden = false
         
-        
         let top = CGAffineTransform(translationX: 0, y: 0)
         UIView.animate(withDuration: 0.4, delay: 0.0, options: [], animations: {
             self.billSubView.transform = top
-            self.tipControl.frame = CGRect(x: 0 , y: 150, width: self.tipControl.frame.width, height: self.tipControl.frame.height)
-            
-            // Add the transformation in this block
-            // self.container is your view that you want to animate
+            self.tipControl.frame = CGRect(x: 10, y: 150, width: self.tipControl.frame.width, height: self.tipControl.frame.height)
             self.subView.transform = top
         }, completion: nil)
     }
     
-    func slideDown() {
+    func slideDown(duration: Double = 0.4) {
         billSubView.frame = CGRect(x: 0 , y: 55, width: billSubView.frame.width, height: billSubView.frame.height + 110)
-        tipControl.frame = CGRect(x: 0 , y: 250, width: tipControl.frame.width, height: tipControl.frame.height)
-//        tipControl.trailingAnchor.constraint(equalTo: billSubView.layoutMarginsGuide.trailingAnchor)
-        
+
         let btm = CGAffineTransform(translationX: 0, y: 110)
-        UIView.animate(withDuration: 0.4, delay: 0.0, options: [], animations: {
-            // Add the transformation in this block
-            // self.container is your view that you want to animate
+        UIView.animate(withDuration: duration, delay: 0.0, options: [], animations: {
             self.subView.transform = btm
+            self.tipControl.frame = CGRect(x: 10, y: 250, width: self.tipControl.frame.width, height: self.tipControl.frame.height)
         }, completion: nil)
     }
 
