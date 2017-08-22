@@ -157,6 +157,16 @@
                         <outlet property="divide2Label" destination="xyg-51-h1d" id="sLf-SY-dTd"/>
                         <outlet property="divide3Label" destination="po6-Nd-Gsp" id="hoy-Tb-3nn"/>
                         <outlet property="divide4Label" destination="V7O-ZN-4Cc" id="7wk-lb-esw"/>
+                        <outlet property="kh0" destination="veV-mS-heG" id="lV6-eU-CIF"/>
+                        <outlet property="kh1" destination="W7d-wt-V7w" id="EwB-5o-28M"/>
+                        <outlet property="kh2" destination="EcK-QI-ADK" id="K12-Cr-a8r"/>
+                        <outlet property="kh3" destination="FUd-hJ-z1A" id="V5w-am-T1Q"/>
+                        <outlet property="kh4" destination="g4m-vV-YeV" id="JHw-cw-E1z"/>
+                        <outlet property="kh5" destination="To4-OI-9Wo" id="TPy-7V-J5u"/>
+                        <outlet property="kh6" destination="7e3-ca-Ro3" id="Cr9-cg-EZM"/>
+                        <outlet property="kh7" destination="9rO-G6-GbB" id="xMD-fl-QK5"/>
+                        <outlet property="kh8" destination="cwW-I6-IKC" id="ol7-Dd-vwN"/>
+                        <outlet property="kh9" destination="idM-rs-vbF" id="mCK-5k-Ljr"/>
                         <outlet property="plusLabel" destination="FjB-hp-s3x" id="Ram-ia-fyy"/>
                         <outlet property="subTipLabel" destination="lh9-G3-HcQ" id="9R9-0A-kmK"/>
                         <outlet property="subTotalLabel" destination="D0e-1Z-l1O" id="i77-tR-VGS"/>

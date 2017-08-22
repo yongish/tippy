@@ -20,6 +20,16 @@ class ViewController: UIViewController {
     @IBOutlet weak var divide4Label: UILabel!
     @IBOutlet weak var plusLabel: UILabel!
     
+    @IBOutlet weak var kh0: UIImageView!
+    @IBOutlet weak var kh1: UIImageView!
+    @IBOutlet weak var kh2: UIImageView!
+    @IBOutlet weak var kh3: UIImageView!
+    @IBOutlet weak var kh4: UIImageView!
+    @IBOutlet weak var kh5: UIImageView!
+    @IBOutlet weak var kh6: UIImageView!
+    @IBOutlet weak var kh7: UIImageView!
+    @IBOutlet weak var kh8: UIImageView!
+    @IBOutlet weak var kh9: UIImageView!
     
     var tipPercentages = [18, 20, 25]
     var defaultIndex = 0
@@ -44,9 +54,6 @@ class ViewController: UIViewController {
         view.addSubview(subView)
         slideDown(duration: 0.0)
 //        subView.isHidden = false
-        
-        
-
     }
     
     // Clear UserDefaults bill if it has been more than 5 seconds (demo purpose; supposed to be 10 min).
@@ -108,6 +115,7 @@ class ViewController: UIViewController {
             divide2Label.textColor = UIColor.black
             divide3Label.textColor = UIColor.black
             divide4Label.textColor = UIColor.black
+            kh0.image = UIImage(named: "41032-200.png")
         } else {
             billField.textColor = UIColor.white
             billSubView.backgroundColor = UIColor.darkGray
@@ -119,6 +127,7 @@ class ViewController: UIViewController {
             divide2Label.textColor = UIColor.white
             divide3Label.textColor = UIColor.white
             divide4Label.textColor = UIColor.white
+            kh0.image = UIImage(named: "white_keyhole.png")
         }
         
         // Calculate bill based on default.
