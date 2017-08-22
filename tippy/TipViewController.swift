@@ -116,6 +116,15 @@ class ViewController: UIViewController {
             divide3Label.textColor = UIColor.black
             divide4Label.textColor = UIColor.black
             kh0.image = UIImage(named: "41032-200.png")
+            kh1.image = UIImage(named: "41032-200.png")
+            kh2.image = UIImage(named: "41032-200.png")
+            kh3.image = UIImage(named: "41032-200.png")
+            kh4.image = UIImage(named: "41032-200.png")
+            kh5.image = UIImage(named: "41032-200.png")
+            kh6.image = UIImage(named: "41032-200.png")
+            kh7.image = UIImage(named: "41032-200.png")
+            kh8.image = UIImage(named: "41032-200.png")
+            kh9.image = UIImage(named: "41032-200.png")
         } else {
             billField.textColor = UIColor.white
             billSubView.backgroundColor = UIColor.darkGray
@@ -128,6 +137,15 @@ class ViewController: UIViewController {
             divide3Label.textColor = UIColor.white
             divide4Label.textColor = UIColor.white
             kh0.image = UIImage(named: "white_keyhole.png")
+            kh1.image = UIImage(named: "white_keyhole.png")
+            kh2.image = UIImage(named: "white_keyhole.png")
+            kh3.image = UIImage(named: "white_keyhole.png")
+            kh4.image = UIImage(named: "white_keyhole.png")
+            kh5.image = UIImage(named: "white_keyhole.png")
+            kh6.image = UIImage(named: "white_keyhole.png")
+            kh7.image = UIImage(named: "white_keyhole.png")
+            kh8.image = UIImage(named: "white_keyhole.png")
+            kh9.image = UIImage(named: "white_keyhole.png")
         }
         
         // Calculate bill based on default.
