@@ -15,16 +15,17 @@ class ViewController: UIViewController {
     @IBOutlet weak var totalLabel: UILabel!
     @IBOutlet weak var tipControl: UISegmentedControl!
 
-    @IBOutlet weak var billLabel: UILabel!
-    @IBOutlet weak var tipLabelLabel: UILabel!
-    @IBOutlet weak var totalLabelLabel: UILabel!
     
     @IBOutlet weak var subTipLabel: UILabel!
+    @IBOutlet weak var subTotalLabel: UILabel!
     
     
     var tipPercentages = [18, 20, 25]
     var defaultIndex = 0
     
+    var flag = true
+    
+    @IBOutlet weak var billSubView: UIView!
     @IBOutlet weak var subView: UIView!
 
     
@@ -95,16 +96,16 @@ class ViewController: UIViewController {
             view.backgroundColor = UIColor.white
             tipLabel.textColor = UIColor.black
             totalLabel.textColor = UIColor.black
-            billLabel.textColor = UIColor.black
-            tipLabelLabel.textColor = UIColor.black
-            totalLabelLabel.textColor = UIColor.black
+//            billLabel.textColor = UIColor.black
+//            tipLabelLabel.textColor = UIColor.black
+//            totalLabelLabel.textColor = UIColor.black
         } else {
             view.backgroundColor = UIColor.black
             tipLabel.textColor = UIColor.white
             totalLabel.textColor = UIColor.white
-            billLabel.textColor = UIColor.white
-            tipLabelLabel.textColor = UIColor.white
-            totalLabelLabel.textColor = UIColor.white
+//            billLabel.textColor = UIColor.white
+//            tipLabelLabel.textColor = UIColor.white
+//            totalLabelLabel.textColor = UIColor.white
         }
         
         // Calculate bill based on default.
@@ -156,8 +157,13 @@ class ViewController: UIViewController {
     
     func slideUp() {
         subView.isHidden = false
+        
+        
         let top = CGAffineTransform(translationX: 0, y: 0)
         UIView.animate(withDuration: 0.4, delay: 0.0, options: [], animations: {
+            self.billSubView.transform = top
+            self.tipControl.frame = CGRect(x: 0 , y: 150, width: self.tipControl.frame.width, height: self.tipControl.frame.height)
+            
             // Add the transformation in this block
             // self.container is your view that you want to animate
             self.subView.transform = top
@@ -165,6 +171,9 @@ class ViewController: UIViewController {
     }
     
     func slideDown() {
+        billSubView.frame = CGRect(x: 0 , y: 55, width: billSubView.frame.width, height: billSubView.frame.height + 110)
+        tipControl.frame = CGRect(x: 0 , y: 250, width: tipControl.frame.width, height: tipControl.frame.height)
+//        tipControl.trailingAnchor.constraint(equalTo: billSubView.layoutMarginsGuide.trailingAnchor)
         
         let btm = CGAffineTransform(translationX: 0, y: 110)
         UIView.animate(withDuration: 0.4, delay: 0.0, options: [], animations: {
@@ -183,15 +192,19 @@ class ViewController: UIViewController {
         
         print("entered bill")
         
-//        view.endEditing(true) Keyboard should always be present.
         subView.isHidden = false
         slideDown()
+        
+        flag = true
     }
 
     @IBAction func calculateTip(_ sender: AnyObject) {
         print("editing begin")
 
-        slideUp()
+        if (flag) {
+            slideUp()
+        }
+        flag = false
         fillLabels()
     }
     
