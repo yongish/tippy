@@ -235,7 +235,9 @@ class ViewController: UIViewController {
 
         subTotalLabel.text = String(format: "%@%.2f", locale: Locale.current, currencySymbol, total)
         subTipLabel.text = String(format: "%@%.2f", locale: Locale.current, currencySymbol, tip)
-        
+        divide2Label.text = String(format: "%@%.2f", locale: Locale.current, currencySymbol, total / 2)
+        divide3Label.text = String(format: "%@%.2f", locale: Locale.current, currencySymbol, total / 3)
+        divide4Label.text = String(format: "%@%.2f", locale: Locale.current, currencySymbol, total / 4)
     }
 }
 
